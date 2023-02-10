@@ -183,9 +183,18 @@ module.exports = {
       );
   },
   async execute(interaction) {
-    const unit_name = interaction.options.getString("unit").toLowerCase();
-    const doctrine = interaction.options.getString("doctrine").toLowerCase();
-    var level = parseInt(interaction.options.getString("level"));
+    const unit_name =
+      interaction.options.getString("unit") != null
+        ? interaction.options.getString("unit").toLowerCase()
+        : "aircraft carrier"; //default
+    const doctrine =
+      interaction.options.getString("doctrine") != null
+        ? interaction.options.getString("doctrine").toLowerCase()
+        : "base";
+    var level =
+      interaction.options.getString("level") != null
+        ? parseInt(interaction.options.getString("level"))
+        : 1; //default
     await interaction.deferReply();
 
     if (!["base", "allies", "axis", "commintern", "pa"].includes(doctrine)) {
