@@ -40,28 +40,6 @@ for (const file of commandFiles) {
   }
 }
 
-//need to put in seperate file later
-client.on("interactionCreate", async (interaction) => {
-  if (interaction.isChatInputCommand()) {
-    // command handling
-  } else if (interaction.isAutocomplete()) {
-    const command = interaction.client.commands.get(interaction.commandName);
-
-    if (!command) {
-      console.error(
-        `No command matching ${interaction.commandName} was found.`
-      );
-      return;
-    }
-
-    try {
-      await command.autocomplete(interaction);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-});
-
 const eventsPath = path.join(__dirname, "events");
 const eventFiles = fs
   .readdirSync(eventsPath)
