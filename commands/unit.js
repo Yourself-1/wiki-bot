@@ -372,10 +372,7 @@ module.exports = {
             name: "__**SPEED**__",
             value: `Base speed: ${speed}`,
           },
-          {
-            name: "\u200b",
-            value: "\u200b",
-          },
+
           {
             name: "**Terrain Speed buffs/debuffs**",
             value: `**Plains:** ${
@@ -405,6 +402,9 @@ module.exports = {
             }`,
           },
         ],
+        footer: {
+          text: "If you find any error or incorrect information, join the server and make a ticket - https://discord.gg/R8TcR9MhMK",
+        },
       };
 
       interaction.editReply({ embeds: [embed] });
