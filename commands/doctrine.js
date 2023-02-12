@@ -91,8 +91,9 @@ Each Doctrine has a main focus with general strengths and weaknesses, which are 
               inline: false,
             },
             {
-              name: ":green_square: __**Buffs**__",
-              value: row.buffs.replaceAll(",", "\n"),
+              name: ":green_square: __**Doctrine Buffs**__",
+              value:
+                "Applies to all units.\n\n" + row.buffs.replaceAll(",", "\n"),
               inline: true,
             },
             {
@@ -101,8 +102,9 @@ Each Doctrine has a main focus with general strengths and weaknesses, which are 
               inline: true,
             },
             {
-              name: ":red_square: __**Debuffs**__",
-              value: row.debuffs.replaceAll(",", "\n"),
+              name: ":red_square: __**Doctrine Debuffs**__",
+              value:
+                "Applies to all units.\n\n" + row.debuffs.replaceAll(",", "\n"),
               inline: true,
             },
             {
@@ -111,8 +113,10 @@ Each Doctrine has a main focus with general strengths and weaknesses, which are 
               inline: false,
             },
             {
-              name: ":green_square: __**Buffed Units**__",
-              value: row.buffed_units.replaceAll(",", "\n"),
+              name: ":green_square: __**Favoured Units**__",
+              value:
+                "These units get bonuses in the form of early upgrades (or) combat bonuses (or) cost.\n\n**-** " +
+                row.buffed_units.replaceAll(",", "\n**-** "),
               inline: true,
             },
             {
@@ -121,8 +125,10 @@ Each Doctrine has a main focus with general strengths and weaknesses, which are 
               inline: true,
             },
             {
-              name: ":red_square: __**Debuffed Units**__",
-              value: row.debuffed_units.replaceAll(",", "\n"),
+              name: ":red_square: __**Delayed tech Units**__",
+              value:
+                "The following units for this doctrine are disadvantaged by having their upgrades delayed.\n\n**-** " +
+                row.debuffed_units.replaceAll(",", "\n**-** "),
               inline: true,
             },
           ],
@@ -151,8 +157,9 @@ Each Doctrine has a main focus with general strengths and weaknesses, which are 
               inline: false,
             },
             {
-              name: ":green_square: __**Buffs**__",
-              value: row.buffs.replaceAll(",", "\n"),
+              name: ":green_square: __**Doctrine Buffs**__",
+              value:
+                "Applies to all units.\n\n" + row.buffs.replaceAll(",", "\n"),
               inline: true,
             },
             {
@@ -161,18 +168,21 @@ Each Doctrine has a main focus with general strengths and weaknesses, which are 
               inline: true,
             },
             {
-              name: ":red_square: __**Debuffs**__",
-              value: row.debuffs.replaceAll(",", "\n"),
+              name: ":red_square: __**Doctrine Debuffs**__",
+              value:
+                "Applies to all units.\n\n" + row.debuffs.replaceAll(",", "\n"),
               inline: true,
             },
             {
               name: "\u200b",
-              value: "\u200b",
+              value: "",
               inline: false,
             },
             {
-              name: ":green_square: __**Buffed Units**__",
-              value: row.buffed_units.replaceAll(",", "\n"),
+              name: ":green_square: __**Favoured Units**__",
+              value:
+                "These units get bonuses in the form of early upgrades (or) combat bonuses (or) cost.\n\n**-** " +
+                row.buffed_units.replaceAll(",", "\n**-** "),
               inline: true,
             },
             {
@@ -181,8 +191,10 @@ Each Doctrine has a main focus with general strengths and weaknesses, which are 
               inline: true,
             },
             {
-              name: ":red_square: __**Debuffed Units**__",
-              value: row.debuffed_units.replaceAll(",", "\n"),
+              name: ":red_square: __**Delayed tech Units**__",
+              value:
+                "The following units for this doctrine are disadvantaged by having their upgrades delayed.\n\n**-** " +
+                row.debuffed_units.replaceAll(",", "\n**-** "),
               inline: true,
             },
           ],
