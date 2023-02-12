@@ -28,7 +28,7 @@ module.exports = {
     let doctrine = interaction.options.getString("doctrine");
     const userId = interaction.user.id.toString();
 
-    const cooldownTime = 6000; //in milli second, 1000 millisecond = 1 second
+    const cooldownTime = 15000; //in milli second, 1000 millisecond = 1 second
 
     //command cooldown
     if (usedCommandrecently.includes(userId)) {
