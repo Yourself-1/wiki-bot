@@ -107,7 +107,7 @@ Each Doctrine has a main focus with general strengths and weaknesses, which are 
             },
             {
               name: "\u200b",
-              value: "\u200b",
+              value: "",
               inline: false,
             },
             {

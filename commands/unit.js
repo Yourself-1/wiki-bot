@@ -289,7 +289,7 @@ module.exports = {
           },
           {
             name: "\u200b",
-            value: "\u200b",
+            value: "",
           },
           {
             name: "__**COMBAT**__",
@@ -323,7 +323,7 @@ module.exports = {
           },
           {
             name: "\u200b",
-            value: "\u200b",
+            value: "",
           },
           {
             name: "**Terrain combat buffs**",
@@ -355,7 +355,7 @@ module.exports = {
           },
           {
             name: "\u200b",
-            value: "\u200b",
+            value: "",
           },
           {
             name: "__**PRODUCTION & COST**__",
@@ -386,7 +386,7 @@ module.exports = {
           },
           {
             name: "\u200b",
-            value: "\u200b",
+            value: "",
           },
           {
             name: "__**SPEED**__",
