@@ -2,6 +2,8 @@ const { SlashCommandBuilder } = require("discord.js");
 const { getRandomColor } = require("../function.js");
 const sql = require("sqlite3");
 
+var usedCommandrecently = []; //for implementing the command cool down
+
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("doctrine")
@@ -22,8 +24,28 @@ module.exports = {
   async execute(interaction) {
     let doctrineDb = new sql.Database("./data/doctrines.db", sql.OPEN_READONLY);
     let embeds = [];
-    await interaction.deferReply();
+
     let doctrine = interaction.options.getString("doctrine");
+    const userId = interaction.user.id.toString();
+
+    const cooldownTime = 6000; //in milli second, 1000 millisecond = 1 second
+
+    //command cooldown
+    if (usedCommandrecently.includes(userId)) {
+      content = `This command has a **cooldown** of **${
+        cooldownTime / 1000
+      }s**\nPlease be patient.`;
+      await interaction.reply({ content: content, ephemeral: true });
+      return;
+    }
+
+    //set cooldown
+    usedCommandrecently.push(userId);
+    setTimeout(() => {
+      delete usedCommandrecently[usedCommandrecently.indexOf(userId)];
+    }, cooldownTime);
+
+    await interaction.deferReply();
 
     if (doctrine === "all") {
       doctrineList = ["axis", "allies", "commintern", "pan-asian"];

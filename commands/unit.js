@@ -26,6 +26,8 @@ function makeToFloat(whole_data) {
   return float_data;
 }
 
+var usedCommandrecently = []; //for implementing the command cooldown
+
 const sql = require("sqlite3");
 
 module.exports = {
@@ -186,6 +188,24 @@ module.exports = {
     const unit_name = interaction.options.getString("unit").toLowerCase();
     const doctrine = interaction.options.getString("doctrine").toLowerCase();
     var level = parseInt(interaction.options.getString("level"));
+    const userId = interaction.user.id.toString();
+
+    const cooldownTime = 6000; //in milli second, 1000 millisecond = 1 second
+
+    //command cooldown
+    if (usedCommandrecently.includes(userId)) {
+      content = `This command has a **cooldown** of **${
+        cooldownTime / 1000
+      }s**\nPlease be patient.`;
+      await interaction.reply({ content: content, ephemeral: true });
+      return;
+    }
+
+    //set cooldown
+    usedCommandrecently.push(userId);
+    setTimeout(() => {
+      delete usedCommandrecently[usedCommandrecently.indexOf(userId)];
+    }, cooldownTime);
 
     await interaction.deferReply();
 
@@ -374,31 +394,46 @@ module.exports = {
           },
 
           {
-            name: "**Terrain Speed buffs/debuffs**",
+            name: "**Speed per Terrain**",
             value: `**Plains:** ${
               terrain_speed_modifier[0] === 0
                 ? "NA"
-                : parseInt((terrain_speed_modifier[0] - 1) * 100) + "%"
+                : parseInt((terrain_speed_modifier[0] - 1) * 100) +
+                  "% **(" +
+                  parseInt(speed * terrain_speed_modifier[0]) +
+                  ")**"
             }
             **Hills:** ${
               terrain_speed_modifier[1] === 0
                 ? "NA"
-                : parseInt((terrain_speed_modifier[1] - 1) * 100) + "%"
+                : parseInt((terrain_speed_modifier[1] - 1) * 100) +
+                  "% **(" +
+                  parseInt(speed * terrain_speed_modifier[1]) +
+                  ")**"
             }
             **Mountain:** ${
               terrain_speed_modifier[2] === 0
                 ? "NA"
-                : parseInt((terrain_speed_modifier[2] - 1) * 100) + "%"
+                : parseInt((terrain_speed_modifier[2] - 1) * 100) +
+                  "% **(" +
+                  parseInt(speed * terrain_speed_modifier[2]) +
+                  ")**"
             }
             **Forest:** ${
               terrain_speed_modifier[3] === 0
                 ? "NA"
-                : parseInt((terrain_speed_modifier[3] - 1) * 100) + "%"
+                : parseInt((terrain_speed_modifier[3] - 1) * 100) +
+                  "% **(" +
+                  parseInt(speed * terrain_speed_modifier[3]) +
+                  ")**"
             }
             **Urban:** ${
               terrain_speed_modifier[4] === 0
                 ? "NA"
-                : parseInt((terrain_speed_modifier[4] - 1) * 100) + "%"
+                : parseInt((terrain_speed_modifier[4] - 1) * 100) +
+                  "% **(" +
+                  parseInt(speed * terrain_speed_modifier[4]) +
+                  ")**"
             }`,
           },
         ],
