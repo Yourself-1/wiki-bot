@@ -13,12 +13,29 @@ app.listen(port, () => {
 
 // Require the necessary discord.js classes
 const { clientId, token } = require("./config.json");
-const { Client, Events, GatewayIntentBits, Collection } = require("discord.js");
+const {
+  Client,
+  Events,
+  GatewayIntentBits,
+  Collection,
+  ActivityType,
+} = require("discord.js");
 const fs = require("node:fs");
 const path = require("node:path");
 
 // Create a new client instance
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+const client = new Client({
+  intents: [GatewayIntentBits.Guilds],
+  presence: {
+    status: "online",
+    activities: [
+      {
+        name: `COW archives`,
+        type: ActivityType.Watching,
+      },
+    ],
+  },
+});
 
 client.commands = new Collection();
 

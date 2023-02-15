@@ -1,5 +1,45 @@
 const { SlashCommandBuilder } = require("discord.js");
 
+let unit_choices = [
+  "aircraft carrier",
+  "aircraft transport",
+  "anti air",
+  "anti tank",
+  "armored car",
+  "artillery",
+  "attack bomber",
+  "battleship",
+  "commandos",
+  "cruiser",
+  "destroyer",
+  "flying bomb",
+  "heavy tank",
+  "infantry",
+  "interceptor",
+  "light tank",
+  "mechanized infantry",
+  "medium tank",
+  "militia",
+  "motorized infantry",
+  "naval bomber",
+  "nuclear bomber",
+  "nuclear rocket",
+  "paratroopers transport",
+  "paratroopers unit",
+  "railroadgun",
+  "rocket",
+  "rocket artillery",
+  "rocket fighter",
+  "sp anti air",
+  "sp artillery",
+  "sp rocket artillery",
+  "strategic bomber",
+  "submarine",
+  "tactical bomber",
+  "tank destroyer",
+  "transport ship",
+];
+
 function getRandomColor() {
   return Math.floor(Math.random() * 16777215);
 }
@@ -63,45 +103,6 @@ module.exports = {
     ),
   async autocomplete(interaction) {
     const focusedOption = interaction.options.getFocused(true);
-    let unit_choices = [
-      "aircraft carrier",
-      "aircraft transport",
-      "anti air",
-      "anti tank",
-      "armored car",
-      "artillery",
-      "attack bomber",
-      "battleship",
-      "commandos",
-      "cruiser",
-      "destroyer",
-      "flying bomb",
-      "heavy tank",
-      "infantry",
-      "interceptor",
-      "light tank",
-      "mechanized infantry",
-      "medium tank",
-      "militia",
-      "motorized infantry",
-      "naval bomber",
-      "nuclear bomber",
-      "nuclear rocket",
-      "paratroopers transport",
-      "paratroopers unit",
-      "railroadgun",
-      "rocket",
-      "rocket artillery",
-      "rocket fighter",
-      "sp anti air",
-      "sp artillery",
-      "sp rocket artillery",
-      "strategic bomber",
-      "submarine",
-      "tactical bomber",
-      "tank destroyer",
-      "transport ship",
-    ];
 
     let choices;
     if (
@@ -189,6 +190,16 @@ module.exports = {
     const doctrine = interaction.options.getString("doctrine").toLowerCase();
     var level = parseInt(interaction.options.getString("level"));
     const userId = interaction.user.id.toString();
+
+    //if wrong unit name input
+    if (!unit_choices.includes(unit_name)) {
+      content = `**"**${unit_name}**"** is not valid unit name.\n**The following are valid inputs, enter exactly as given below -**`;
+      for (let i = 0; i < unit_choices.length; i++) {
+        content = content + "\n" + unit_choices[i];
+      }
+      await interaction.reply({ content: content, ephemeral: true });
+      return;
+    }
 
     const cooldownTime = 15000; //in milli second, 1000 millisecond = 1 second
 
